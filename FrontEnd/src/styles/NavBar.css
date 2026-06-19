@@ -1,0 +1,33 @@
+.navigations{
+    margin-left: 20%;
+}
+.nav_item_space{
+    margin-right: 40px;
+}
+.cart-icon-navbar{
+    font-size: 25px;
+    margin-right : 15px ;
+}
+.justify-content-end{
+    position: absolute;
+    left: 70%;
+    right: 10%
+}
+.signup-button{
+    margin: auto;
+}
+ .signup-btn{
+    padding: 8px 20px;
+    border-radius: 15px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #b3a676;
+    font-weight: 600;
+    cursor: pointer;
+}
+.signup-button .signup-btn:hover{
+    background-color: #f8f4e1;
+}
+.NavBar_main{
+    background-color: #c2b2808a !important;
+}
