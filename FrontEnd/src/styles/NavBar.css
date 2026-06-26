@@ -1,33 +1,71 @@
-.navigations{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.NavBar_main {
+    background-color: #3d2c1e !important;
+    border-bottom: 1px solid #4a3828;
+    margin-bottom: 0px;
+    padding: 0 24px;
+    height: 70px;
+    font-family: 'Inter', sans-serif;
+}
+
+.navigations {
     margin-left: 20%;
 }
-.nav_item_space{
+
+.nav_item_space {
     margin-right: 40px;
 }
-.cart-icon-navbar{
-    font-size: 25px;
-    margin-right : 15px ;
+
+.NavBar_main .navbar-brand {
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 1.15rem;
 }
-.justify-content-end{
+
+.NavBar_main .nav-link {
+    color: rgba(255, 255, 255, 0.72) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.NavBar_main .nav-link:hover {
+    color: #fff !important;
+}
+
+.cart-icon-navbar {
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.justify-content-end {
     position: absolute;
     left: 70%;
-    right: 10%
 }
-.signup-button{
+
+.signup-button {
     margin: auto;
 }
- .signup-btn{
-    padding: 8px 20px;
-    border-radius: 15px;
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #b3a676;
+
+.signup-btn {
+    padding: 8px 22px;
+    border-radius: 8px;
+    color: #2c1e10;
+    background-color: #fde68a;
+    border: none;
     font-weight: 600;
+    font-size: 0.88rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Inter', sans-serif;
 }
-.signup-button .signup-btn:hover{
-    background-color: #f8f4e1;
+
+.signup-btn:hover {
+    background-color: #fcd34d;
 }
-.NavBar_main{
-    background-color: #c2b2808a !important;
+
+.hero-section {
+    justify-content: center;
+    align-items: center;
 }
