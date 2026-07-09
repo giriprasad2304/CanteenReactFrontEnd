@@ -6,7 +6,7 @@ const { redisClient } = require('../db/redis')
 async function addItem(req, res) {
     try {
         const item = await itemModel.create(req.body)
-        await redisClient.del('menu')
+        if (redisClient.isReady) { try { await redisClient.del('menu') } catch (e) {} }
         res.status(201).json({ message: 'Item added successfully', item })
     } catch (err) {
         console.error('addItem error:', err)
@@ -18,7 +18,7 @@ async function updateMenuItem(req, res) {
     try {
         const item = await itemModel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
         if (!item) return res.status(404).json({ message: 'Item not found' })
-        await redisClient.del('menu')
+        if (redisClient.isReady) { try { await redisClient.del('menu') } catch (e) {} }
         res.json({ message: 'Item updated', item })
     } catch (err) {
         console.error('updateMenuItem error:', err)
@@ -30,7 +30,7 @@ async function deleteMenuItem(req, res) {
     try {
         const item = await itemModel.findByIdAndDelete(req.params.id)
         if (!item) return res.status(404).json({ message: 'Item not found' })
-        await redisClient.del('menu')
+        if (redisClient.isReady) { try { await redisClient.del('menu') } catch (e) {} }
         res.json({ message: 'Item deleted' })
     } catch (err) {
         console.error('deleteMenuItem error:', err)

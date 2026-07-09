@@ -4,7 +4,11 @@ const { redisClient } = require('../db/redis');
 
 async function getItems(req, res) {
     try {
-        const cachedMenu = await redisClient.get('menu');
+        let cachedMenu = null;
+        if (redisClient.isReady) {
+            try { cachedMenu = await redisClient.get('menu'); } catch (e) {}
+        }
+
         if (cachedMenu) {
             return res.status(200).json({
                 success: true,
@@ -15,7 +19,9 @@ async function getItems(req, res) {
 
         const item = await itemModel.find({});
         
-        await redisClient.setEx('menu', 3600, JSON.stringify(item));
+        if (redisClient.isReady) {
+            try { await redisClient.setEx('menu', 3600, JSON.stringify(item)); } catch (e) {}
+        }
 
         return res.status(200).json({
             success: true,
