@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ===================================================
+   ORDERS PAGE WRAPPER
+   =================================================== */
+.order-page {
+    margin-left: 20%;
+    min-height: 100vh;
+    background-color: #fdf6ee;
+    font-family: 'Inter', sans-serif;
+    padding: 40px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 760px;
+}
+
+/* ===================================================
+   PAGE HEADING
+   =================================================== */
+.order-page h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #2c1e10;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+/* ===================================================
+   SECTION LABELS (Active / Completed)
+   =================================================== */
+.Active_orders,
+.Completed_orders {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.Active_orders::before {
+    content: "Active Orders";
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #9a8474;
+}
+
+.Completed_orders::before {
+    content: "Completed Orders";
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #9a8474;
+}
+
+/* ===================================================
+   ACTIVE ORDERS — EMPTY STATE
+   =================================================== */
+.Active_orders>p {
+    background: #fff;
+    border: 1px solid #e5d9cc;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #9a8474;
+    margin: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===================================================
+   ORDER ITEM CARD
+   =================================================== */
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #e5d9cc;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(111, 78, 48, 0.07);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.order-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(111, 78, 48, 0.13);
+}
+
+/* Items list text */
+.order-item>div p {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: #2c1e10;
+    margin: 0;
+}
+
+/* Total price */
+.order-item>p {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #a87b52;
+    background-color: #f5ebe0;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* ===================================================
+   RE-ORDER BUTTON
+   =================================================== */
+.order-item button {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #2c1e10;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.15s ease,
+        box-shadow 0.25s ease;
+    box-shadow: 0 3px 10px rgba(44, 30, 16, 0.25);
+    white-space: nowrap;
+}
+
+.order-item button:hover {
+    background: #a87b52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(168, 123, 82, 0.38);
+}
+
+.order-item button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(44, 30, 16, 0.2);
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 768px) {
+    .order-page {
+        padding: 24px 16px 48px;
+    }
+
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-item button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ── Order item: new sub-elements ── */
+.order-item {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.order-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.order-date {
+    font-size: 0.82rem;
+    color: #9a8474;
+    font-weight: 500;
+}
+.order-status-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: capitalize;
+}
+
+.order-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+.order-line-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #2c1e10;
+}
+
+.order-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #a87b52;
+    border-top: 1px solid #e5d9cc;
+    padding-top: 10px;
+    margin-top: 4px;
+}
+
+/* ── Section heading ── */
+.Active_orders h2,
+.Completed_orders h2 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #9a8474;
+    margin: 0 0 10px;
+}
+
+/* ── Loading / error / empty ── */
+.orders-loading,
+.orders-error,
+.orders-empty p {
+    font-size: 0.95rem;
+    color: #9a8474;
+    text-align: center;
+    padding: 48px 20px;
+}
+.orders-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}

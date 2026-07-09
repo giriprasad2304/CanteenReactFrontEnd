@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ===================================================
+   PROFILE PAGE WRAPPER
+   =================================================== */
+.profile-page {
+    min-height: 100vh;
+    background-color: #fdf6ee;
+    font-family: 'Inter', sans-serif;
+    padding: 40px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 760px;
+    margin-left: 20%;
+}
+
+/* ===================================================
+   HERO BANNER
+   =================================================== */
+.profile-hero {
+    background: linear-gradient(135deg, #a87b52 0%, #6f4e30 100%);
+    border-radius: 20px;
+    padding: 40px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 24px rgba(111, 78, 48, 0.2);
+}
+
+.profile-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.profile-initials {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.profile-role {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.72);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+/* ===================================================
+   INFO / HISTORY CARDS
+   =================================================== */
+.profile-card {
+    background: #fff;
+    border: 1px solid #e5d9cc;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #4a3828;
+    margin: 0 0 20px;
+    letter-spacing: 0.3px;
+}
+
+/* ── Info rows ── */
+.profile-info-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+}
+
+.profile-info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #f5ebe0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #a87b52;
+    flex-shrink: 0;
+}
+
+.profile-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-info-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9a8474;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.profile-info-value {
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: #2c1e10;
+}
+
+.profile-divider {
+    height: 1px;
+    background-color: #f0e4d6;
+    margin: 0;
+}
+
+/* ── Empty orders state ── */
+.profile-empty-orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 12px;
+    color: #9a8474;
+}
+
+.profile-empty-icon {
+    font-size: 2.8rem;
+}
+
+.profile-empty-orders p {
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+/* ===================================================
+   LOGOUT BUTTON
+   =================================================== */
+.profile-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 28px;
+    border: 1.5px solid #e5a5a5;
+    border-radius: 12px;
+    background-color: #fff5f5;
+    color: #c0392b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.profile-logout-btn svg {
+    font-size: 1.15rem;
+}
+
+.profile-logout-btn:hover {
+    background-color: #fde8e8;
+    transform: translateY(-1px);
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 768px) {
+    .profile-page {
+        margin-left: 0;
+        padding: 24px 16px 48px;
+    }
+
+    .profile-card {
+        padding: 20px 18px;
+    }
+}
+
+.profile-order-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0e6d8;
+    font-size: 0.88rem;
+}
+.profile-order-row:last-child { border-bottom: none; }
+
+.profile-order-items {
+    flex: 1;
+    color: #2c1e10;
+    font-weight: 500;
+}
+.profile-order-total {
+    font-weight: 700;
+    color: #a87b52;
+    white-space: nowrap;
+}
+.profile-order-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #f5ebe0;
+    color: #6f4e30;
+    white-space: nowrap;
+}

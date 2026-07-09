@@ -1,0 +1,14 @@
+/* Dashboard layout shell */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* The scrollable content area sits beside the fixed sidebar */
+.dashboard-content {
+    margin-left: 280px;
+    /* same width as .sidebar_main */
+    flex: 1;
+    background-color: #fdf6ee;
+    overflow-y: auto;
+}
