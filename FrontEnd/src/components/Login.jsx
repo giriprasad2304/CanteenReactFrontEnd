@@ -9,23 +9,30 @@ import { FaUtensils } from 'react-icons/fa6'
 import { setAuth } from '../store/authSlice'
 import '../styles/Auth.css'
 
+const API_URL = import.meta.env.VITE_NODE_API_URL || 'http://localhost:3000'
+
 const Login = () => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [errorMessage, setErrorMessage] = useState('')
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
 
     const handleLogin = async (e) => {
         e.preventDefault()
-        setErrorMessage('')
+        setError('')
+        setSuccess('')
+        setLoading(true)
+        
         try {
-            const res = await axios.post('http://localhost:3000/api/auth/login', {
+            const res = await axios.post(`${API_URL}/api/auth/login`, {
                 email: e.target.email.value,
                 password: e.target.password.value,
             })
             dispatch(setAuth({ token: res.data.token, user: res.data.user }))
             navigate(res.data.user.role === 'admin' ? '/admin' : '/dashboard')
         } catch (err) {
-            setErrorMessage(err?.response?.data?.message || err?.message || 'Login failed')
+            setError(err?.response?.data?.message || err?.message || 'Login failed')
         }
     }
 
@@ -36,7 +43,7 @@ const Login = () => {
                 <h1 className="auth-title">Welcome Back</h1>
                 <p className="auth-subtitle">Sign in to your CraveCanteen account</p>
 
-                {errorMessage && <div className="auth-error">{errorMessage}</div>}
+                {error && <div className="auth-error">{error}</div>}
 
                 <form className="auth-form" onSubmit={handleLogin}>
                     <div className="auth-input-group">

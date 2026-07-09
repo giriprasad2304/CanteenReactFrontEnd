@@ -10,6 +10,8 @@ import { useState } from 'react'
 import { setAuth } from '../store/authSlice'
 import '../styles/Auth.css'
 
+const API_URL = import.meta.env.VITE_NODE_API_URL || 'http://localhost:3000'
+
 const SignUp = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -19,7 +21,7 @@ const SignUp = () => {
         e.preventDefault()
         setErrorMessage('')
         try {
-            const res = await axios.post('http://localhost:3000/api/auth/signup', {
+            const res = await axios.post(`${API_URL}/api/auth/signup`, {
                 username: e.target.userName.value,
                 email: e.target.email.value,
                 password: e.target.password.value,
