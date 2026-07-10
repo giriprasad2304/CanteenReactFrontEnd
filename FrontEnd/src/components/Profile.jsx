@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { MdLogout, MdPerson, MdEmail, MdHistoryEdu, MdPhone } from 'react-icons/md'
 import { clearAuth } from '../store/authSlice'
+import { appCache } from '../utils/cache'
 
 const API_URL = import.meta.env.VITE_NODE_API_URL || 'http://localhost:3000'
 
@@ -14,11 +15,13 @@ const Profile = () => {
     const authUser = useSelector(state => state.auth.user)
     const token = useSelector(state => state.auth.token)
 
-    const [user, setUser] = useState(authUser || {})
-    const [loading, setLoading] = useState(true)
-    const [orders, setOrders] = useState([])
+    const [user, setUser] = useState(appCache.profile || authUser || {})
+    const [orders, setOrders] = useState(appCache.orders || [])
+    const [loading, setLoading] = useState(!appCache.profile || !appCache.orders)
 
     useEffect(() => {
+        if (appCache.profile && appCache.orders) return; // Skip if already cached
+        
         const headers = { Authorization: `Bearer ${token}` }
         Promise.all([
             axios.get(`${API_URL}/api/user/profile`, { headers, withCredentials: true }),
@@ -26,8 +29,10 @@ const Profile = () => {
         ])
             .then(([profileRes, ordersRes]) => {
                 const fresh = profileRes.data.profile
-                setUser({ id: fresh._id, username: fresh.username, email: fresh.email, role: fresh.role })
-                setOrders(ordersRes.data.orders || [])
+                appCache.profile = { id: fresh._id, username: fresh.username, email: fresh.email, role: fresh.role };
+                appCache.orders = ordersRes.data.orders || [];
+                setUser(appCache.profile)
+                setOrders(appCache.orders)
             })
             .catch(err => console.error('Profile fetch error:', err?.message))
             .finally(() => setLoading(false))

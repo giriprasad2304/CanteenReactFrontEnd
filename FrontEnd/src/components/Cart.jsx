@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import { removeItem, updateQty, clearCart } from '../store/cartSlice'
+import { appCache } from '../utils/cache'
 
 const API_URL = import.meta.env.VITE_NODE_API_URL || 'http://localhost:3000'
 
@@ -25,6 +26,7 @@ const Cart = () => {
                 headers: { Authorization: `Bearer ${token}` }
             })
             dispatch(clearCart())
+            appCache.clearUserCache() // Clear cache so the newly placed order will be loaded
             setMsg('Order placed successfully! 🎉')
             setTimeout(() => navigate('/dashboard/orders'), 1500)
         } catch (err) {

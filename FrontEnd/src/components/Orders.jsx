@@ -3,24 +3,31 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import { appCache } from '../utils/cache'
+
 const API_URL = import.meta.env.VITE_NODE_API_URL || 'http://localhost:3000'
 
 const STATUS_COLOR = { pending: '#f59e0b', preparing: '#3b82f6', ready: '#10b981', delivered: '#6b7280' }
 
 const Orders = () => {
-    const [orders, setOrders] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [orders, setOrders] = useState(appCache.orders || [])
+    const [loading, setLoading] = useState(!appCache.orders)
     const [error, setError] = useState('')
     const navigate = useNavigate()
 
     useEffect(() => {
+        if (appCache.orders) return; // Skip if already cached
+        
         const token = localStorage.getItem('token')
         if (!token) { navigate('/login'); return }
 
         axios.get(`${API_URL}/api/orders/my-orders`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(res => setOrders(res.data.orders || []))
+            .then(res => {
+                appCache.orders = res.data.orders || [];
+                setOrders(appCache.orders);
+            })
             .catch(err => setError(err?.response?.data?.message || 'Failed to load orders'))
             .finally(() => setLoading(false))
     }, [navigate])
