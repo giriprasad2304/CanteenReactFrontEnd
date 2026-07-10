@@ -16,7 +16,9 @@ const redisClient = redis.createClient({
 
 let errorLogged = false;
 redisClient.on('error', (err) => {
+    // Log the actual error to help debug!
     if (!errorLogged) {
+        console.error('Redis connection error event:', err.message);
         console.warn('Redis is not connected (cache will be skipped).');
         errorLogged = true;
     }
@@ -24,6 +26,10 @@ redisClient.on('error', (err) => {
 
 async function connectRedis() {
     try {
+        // Redact the password for safe logging
+        const safeUrl = redisURL.replace(/:([^:@]+)@/, ':***@');
+        console.log(`Attempting to connect to Redis at: ${safeUrl}`);
+        
         await redisClient.connect();
         console.log("Redis connected successfully !!!");
     } catch (err) {

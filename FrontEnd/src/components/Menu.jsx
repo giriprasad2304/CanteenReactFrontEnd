@@ -13,10 +13,13 @@ const StarIcon = () => (
     </svg>
 )
 
+// Simple module-level cache so we don't re-fetch every time the user switches routes
+let cachedMenu = null;
+
 const Menu = () => {
     const dispatch = useDispatch()
-    const [items, setItems] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [items, setItems] = useState(cachedMenu || [])
+    const [loading, setLoading] = useState(!cachedMenu)
     const [activeCategory, setActiveCategory] = useState('all')
     const [search, setSearch] = useState('')
     const [toast, setToast] = useState('')
@@ -28,8 +31,13 @@ const Menu = () => {
     }
 
     useEffect(() => {
+        if (cachedMenu) return; // Skip fetching if we already have the data
+
         axios.get(`${API_URL}/api/menu/get-menu`)
-            .then(res => setItems(res.data.item || []))
+            .then(res => {
+                cachedMenu = res.data.item || [];
+                setItems(cachedMenu);
+            })
             .catch(err => console.error('Failed to fetch menu:', err?.message))
             .finally(() => setLoading(false))
     }, [])
