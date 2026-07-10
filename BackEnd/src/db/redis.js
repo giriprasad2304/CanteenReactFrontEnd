@@ -6,7 +6,11 @@ const redisClient = redis.createClient({
     socket: {
         tls: redisURL.startsWith('rediss://'),
         rejectUnauthorized: false, // Often required for managed Redis providers
-        reconnectStrategy: false // Don't keep retrying if Redis is down (stops log spam)
+        // Provide a bounded reconnect strategy to survive idle timeouts without infinite spam
+        reconnectStrategy: (retries) => {
+            if (retries > 10) return new Error('Max Redis reconnect retries reached');
+            return Math.min(retries * 100, 3000); // Wait up to 3 seconds between retries
+        }
     }
 });
 
